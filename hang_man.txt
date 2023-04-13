@@ -1,0 +1,104 @@
+import random
+
+mybiglist=[['z','a','h','r','a'],['f','a','y','z','a'],['m','a','h','a'],['b','i','g','t','r','a','p'],['y','o','u','a','r','e','t','h','e','b','e','s','t'],['h','e','l','p','m','e'],['w','i','n','n','e','r'],['h','a','p','p','y'],['s','m','a','r','t'],['s','t','r','a','n','g','e'],['g','a','m','p','o','l'],['r','u','n','a','w','a','y'],['cu','t','e'],['b','r','i','g','h','t'],['w','i','s','e'],['l','e','l','l','y'],['z','a','r','a'],['l','e','a','k','a','g','e'],['l','o','v','e'],['s','o','o','n'],['l','e','t','t','l','e'],['l','a','t','t','e','r'],['f','a','s','t'],['f','i','n','a','l','l','y']]
+
+
+Test =['z','a','h','r','a']
+list=['-']*len(Test)
+
+
+attempts=6 #number of available attempts
+finish=len(Test)     #flag to check if my guess list become full
+print(finish)
+
+
+print("we have a word with {} characters\n".format(len(Test)))
+
+#*********************************************************************
+
+
+while(1):
+    
+    flag=0  #to enter the wrong condition if the try is worng 
+    
+    
+    in_put=input("enter your new guess\n\n").lower()
+    
+#*******************************************************************
+#check user intput
+
+    if not len(in_put)==1:
+        print("you must enter only one character\n\n")
+        continue
+    
+    
+    if not in_put.isalpha():
+        print("you must enter characters only\n\n")
+        continue
+    
+#*****************************************************************
+#check input case 1-correct 2-repeated 3-wrong    
+
+    for i in range(len(Test)):
+        if list[i]==in_put:
+            print("this character is correct, but you have entered it before\n\n "  )
+            flag=1
+           
+        elif  Test[i]==in_put:
+            list[i]=in_put
+            print(list[i])
+            flag=1
+           
+            if flag==1:
+                finish=finish-1
+                #print(finish)
+            
+    
+    if finish  ==0:
+        print("***winner***Great Gob***\n")
+        print("the correct word is : ",Test)
+    
+
+        input3=input("\nDO you want to play again ???!\npress y to continue or any key for exit\n\n").lower()
+        if input3=='y':
+            index=random.randint(0, len(mybiglist))
+            Test=mybiglist[index]
+            list=['-']*len(Test)
+            print("we have a word with {} characters\n".format(len(Test)))
+            attempts=6
+            finish=len(Test)
+            
+        elif not input3=='y':
+            print("*******thanks for your play********\n")
+            break;
+            
+            
+    if flag==0 :
+        attempts=attempts-1
+        print("your try is wrong \n the rest attempts are ",attempts)
+        
+        
+        if attempts==0:
+            print("Game over hahahahahahahaaaaaaa\n")
+            print("the correct word is : ",Test)
+
+#***************************************************************************************************8
+#choose new game or exit
+            
+            input2=input("DO you want to play again ???!\npress y to continue or any key for exit\n").lower()
+            if input2=='y':
+                index=random.randint(0, len(mybiglist))
+                Test=mybiglist[index]
+                list=['-']*len(Test)
+                print("we have a word with {} characters\n".format(len(Test)))
+                attempts=6
+                finish=len(Test)
+                
+            
+            elif not input2=='y':
+                print("\n*******thanks for your play********\n")
+                break;
+                
+                
+    print(list)
+    
